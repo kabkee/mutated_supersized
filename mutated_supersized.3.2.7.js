@@ -16,11 +16,12 @@
 (function($){
 
 	/* Place Supersized Elements
-	----------------------------*/
+		Eliminated by Kabkee Moon, since it's NOT neccessary after all.
+	----------------------------
 	$(document).ready(function() {
 		// $('#lookSlide').append('<div id="supersized-loader"></div><ul id="supersized"></ul>');
 	});
-    
+    	*/
     
     $.supersized = function(options){
     	
