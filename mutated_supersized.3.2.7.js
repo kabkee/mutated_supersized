@@ -1,8 +1,5 @@
 /*
-  
-  This file is mutated by Kabkee Moon based on the below information
-  
-  ------------------------ below -----------------------------------
+
 	Supersized - Fullscreen Slideshow jQuery Plugin
 	Version : 3.2.7
 	Site	: www.buildinternet.com/project/supersized
@@ -19,9 +16,9 @@
 		Eliminated by Kabkee Moon, since it's NOT neccessary after all.
 	----------------------------
 	$(document).ready(function() {
-		// $('#lookSlide').append('<div id="supersized-loader"></div><ul id="supersized"></ul>');
+		$('#lookSlide').append('<div id="supersized-loader"></div><ul id="supersized"></ul>');
 	});
-    	*/
+    */
     
     $.supersized = function(options){
     	
@@ -155,7 +152,13 @@
 					var imgPrev = $('<img src="'+base.options.slides[loadPrev].image+'"/>');
 					var slidePrev = base.el+' li:eq('+loadPrev+')';
 					imgPrev.appendTo(slidePrev).wrap('<a ' + imageLink + linkTarget + '></a>').parent().parent().addClass('image-loading prevslide');
-				
+					
+					// START : Customized by Kabkee
+					slideHeroTitle = base.options.slides[loadPrev].heroTitle;
+					slideHeroSubTitle = base.options.slides[loadPrev].heroSubTitle;
+					$('<div class="heroTitle"><div class="title">'+slideHeroTitle+'</div><div class="subTitle">'+slideHeroSubTitle+'</div></div>').appendTo(slidePrev);
+					// END : Customized by Kabkee
+
 					imgPrev.load(function(){
 						$(this).data('origWidth', $(this).width()).data('origHeight', $(this).height());
 						base.resizeNow();	// Resize background image
@@ -172,13 +175,14 @@
 			
 			var slideCurrent= base.el+' li:eq('+vars.current_slide+')';
 			img.appendTo(slideCurrent).wrap('<a ' + imageLink + linkTarget + '></a>').parent().parent().addClass('image-loading activeslide');
-
+			
 			// START : Customized by Kabkee
-			var slideHeroTitle = base.options.slides[vars.current_slide].heroTitle;
-			var slideHeroSubTitle = base.options.slides[vars.current_slide].heroSubTitle;
+			slideHeroTitle = base.options.slides[vars.current_slide].heroTitle;
+			slideHeroSubTitle = base.options.slides[vars.current_slide].heroSubTitle;
 			$('<div class="heroTitle"><div class="title">'+slideHeroTitle+'</div><div class="subTitle">'+slideHeroSubTitle+'</div></div>').appendTo(slideCurrent);
 			// END : Customized by Kabkee
-			
+
+
 			img.load(function(){
 				base._origDim($(this));
 				base.resizeNow();	// Resize background image
@@ -195,12 +199,17 @@
 				var slideNext = base.el+' li:eq('+loadNext+')';
 				imgNext.appendTo(slideNext).wrap('<a ' + imageLink + linkTarget + '></a>').parent().parent().addClass('image-loading');
 				
+				// START : Customized by Kabkee
+				slideHeroTitle = base.options.slides[loadNext].heroTitle;
+				slideHeroSubTitle = base.options.slides[loadNext].heroSubTitle;
+				$('<div class="heroTitle"><div class="title">'+slideHeroTitle+'</div><div class="subTitle">'+slideHeroSubTitle+'</div></div>').appendTo(slideNext);
+				// END : Customized by Kabkee
+
 				imgNext.load(function(){
 					$(this).data('origWidth', $(this).width()).data('origHeight', $(this).height());
 					base.resizeNow();	// Resize background image
 				});	// End Load
 			}
-			/*-----End load initial images-----*/
 			
 			//  Hide elements to be faded in
 			base.$el.css('visibility','hidden');
@@ -507,6 +516,12 @@
 				
 				img.appendTo(targetList).wrap('<a ' + imageLink + linkTarget + '></a>').parent().parent().addClass('image-loading').css('visibility','hidden');
 				
+				// START : Customized by Kabkee
+				slideHeroTitle = base.options.slides[loadSlide].heroTitle;
+				slideHeroSubTitle = base.options.slides[loadSlide].heroSubTitle;
+				$('<div class="heroTitle"><div class="title">'+slideHeroTitle+'</div><div class="subTitle">'+slideHeroSubTitle+'</div></div>').appendTo(targetList);
+				// END : Customized by Kabkee
+
 				img.load(function(){
 					base._origDim($(this));
 					base.resizeNow();
@@ -611,6 +626,12 @@
 				
 				img.appendTo(targetList).wrap('<a ' + imageLink + linkTarget + '></a>').parent().parent().addClass('image-loading').css('visibility','hidden');
 				
+				// START : Customized by Kabkee
+				slideHeroTitle = base.options.slides[loadSlide].heroTitle;
+				slideHeroSubTitle = base.options.slides[loadSlide].heroSubTitle;
+				$('<div class="heroTitle"><div class="title">'+slideHeroTitle+'</div><div class="subTitle">'+slideHeroSubTitle+'</div></div>').appendTo(targetList);
+				// END : Customized by Kabkee
+
 				img.load(function(){
 					base._origDim($(this));
 					base.resizeNow();
@@ -932,10 +953,10 @@
     };
     
     $.fn.supersized = function(options){
-      // START : Customized by Kabkee
-		  this.empty().append('<div id="supersized-loader"></div><ul id="supersized"></ul>');
-      // END : Customized by Kabkee
-      
+		// START : Customized by Kabkee
+		this.empty().append('<div id="supersized-loader"></div><ul id="supersized"></ul>');
+		// END : Customized by Kabkee
+
     	return this.each(function(){
 	        (new $.supersized(options));
         });
